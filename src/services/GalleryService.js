@@ -9,6 +9,10 @@ export default class GalleryService {
     getAllGalleries(){
         return axios.get('galleries');
     }
+
+    getSingleGallery(id){
+        return axios.get(`galleries/${id}`);
+    }
 }
 
 export const galleryService = new GalleryService();

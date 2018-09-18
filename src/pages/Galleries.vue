@@ -1,18 +1,18 @@
 <template>
     <div class="container">
-        <!-- <div v-if="galleries.length != 0"> -->
+        <div v-if="galleries.length != 0">
             <div v-for="(gallery, index) in galleries" :key="index" class="card" style="width: 18rem;">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
                 <div class="card-body" style="background-image: linear-gradient(to bottom, #51c8ef, #0184af); text-align: center;">
-                    <h4>{{ gallery.gallery_name}}</h4>
+                    <h4><router-link :to="{name: 'single-gallery', params: {id: gallery.id}}">{{gallery.gallery_name}}</router-link></h4>
                     <p>{{ gallery.user.first_name}} {{ gallery.user.last_name}}</p>
                     <p>{{ gallery.created_at}}</p>
                 </div>
             </div>
-        <!-- </div> -->
-        <!-- <div v-else>
+        </div>
+        <div v-else>
             <p>There are no galleries...</p>
-        </div> -->
+        </div>
     </div>
 </template>
 <script>
