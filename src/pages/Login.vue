@@ -15,6 +15,8 @@
 </template>
 <script>
 import { authService } from "../services/Auth.js";
+import { EventBus } from "../main";
+
 
 export default {
     name: 'login',
@@ -30,6 +32,7 @@ export default {
             authService.login(this.email, this.password)
             .then((response) => {
                 this.$router.push('galleries')
+                EventBus.$emit("changeStatus", "true");
             })
             .catch(error => {
                 this.error = error.response.data.error

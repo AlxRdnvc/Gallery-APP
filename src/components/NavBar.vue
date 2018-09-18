@@ -13,6 +13,7 @@
 
 <script>
 import { authService } from "../services/Auth.js";
+import { EventBus } from "../main";
 
 export default {
     name: "NavBar",
@@ -27,6 +28,11 @@ export default {
             this.isAuthenticated = false
             this.$router.push("/login");
         }
+    },
+    created() {
+    EventBus.$on("changeStatus", data => {
+        this.isAuthenticated = data;
+        });
     }
 }
 

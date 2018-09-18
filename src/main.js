@@ -10,6 +10,8 @@ Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false
 
+export const EventBus = new Vue();
+
 new Vue({
   router,
   store,
