@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm justify-content-center">
     <div class="navbar-nav">
-        <router-link class="nav-item nav-link" to="/">All Galleries</router-link>
-        <router-link class="nav-item nav-link" v-if="!isAuthenticated" to="/login">Login</router-link>
-        <router-link class="nav-item nav-link" v-if="!isAuthenticated" to="/register">Register</router-link>
-        <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/my-galleries">My Galleries</router-link>
-        <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/create">Create New Gallery</router-link>
-        <button v-if="isAuthenticated" @click="logout">Logout</button>
+        <router-link class="nav-item nav-link" to="/"><p>ALL GALLERIES</p></router-link>
+        <router-link class="nav-item nav-link" v-if="!isAuthenticated" to="/login"><p>LOGIN</p></router-link>
+        <router-link class="nav-item nav-link" v-if="!isAuthenticated" to="/register"><p>REGISTER</p></router-link>
+        <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/my-galleries"><p>MY GALLERIES</p></router-link>
+        <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/create"><p>CREATE NEW GALLERY</p></router-link>
+        <button v-if="isAuthenticated" @click="logout"><p>Logout</p></button>
     </div>
   </nav>
 </template>
@@ -37,3 +37,11 @@ export default {
 }
 
 </script>
+<style scoped>
+.navbar-nav p {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #444e60;
+}
+
+</style>

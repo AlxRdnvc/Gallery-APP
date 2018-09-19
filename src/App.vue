@@ -16,4 +16,10 @@ export default {
   }
 }
 </script>
+<style>
+html body {
+      background-image: linear-gradient(to right, white, #e4e4e4);
+  }
+</style>
+
 

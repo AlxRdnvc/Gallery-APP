@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Galleries:</h1>
+        <!-- <h3>Galleries by:</h3> insert user fist_name here-->
         <div class="row">
             <div class="card-style card col-xs-3" v-for="(gallery, index) in galleries" :key="index">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
@@ -36,3 +36,22 @@ export default {
     }
 }
 </script>
+<style>
+.card {
+    width: 60%;
+    padding: 5px;
+    margin: 20px auto;
+    box-shadow: 5px 5px 30px;
+}
+.card-body {
+    background-color: #e4e4e4;
+    line-height: 0.2rem;
+    color: #444e60;
+    font-size: 0.8rem;
+    text-align: center
+}
+.card-body a {
+    color: #444e60;
+}
+</style>
+

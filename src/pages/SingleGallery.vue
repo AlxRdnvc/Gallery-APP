@@ -1,17 +1,23 @@
 <template>
     <div class="container">
         <div class="card text-center w-100">
-            <div class="card-header">
-                <p>created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
-            </div>
             <div class="card-body">
-                <h3 class="card-title">{{gallery.gallery_name}}</h3>
+                <p>created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
+                <h5 class="card-text">{{gallery.gallery_name}}</h5>
                 <p class="card-text">{{gallery.description}}</p>
-                <div v-for="(image, key) in gallery.images" :key="key">
-                    <img style="margin-bottom: 20px;" class="card-img-top" :src="image.image_url" alt="Card image cap"> 
-                </div>
+                <b-carousel id="carousel1"
+                    controls
+                    indicators
+                    background="#ababab"
+                    img-width="600"
+                    img-height="400"
+                    :interval="3000"
+                >
+                <b-carousel-slide class="slider-item" v-for="(image, index) in gallery.images" :key="index"
+                                      :img-src="image.image_url"/>
+                </b-carousel>
             </div>
-        </div>
+        </div><br>
         <div>
             <h5 class="card-title">Comments</h5>
             <div v-for="(comment, index) in gallery.comments" :key="index">
@@ -64,3 +70,21 @@ export default {
     }
 }
 </script>
+<style>
+.card {
+    width: 60%;
+    padding: 5px;
+    margin: 20px auto;
+    box-shadow: 5px 5px 30px;
+}
+.card-body {
+    background-color: #e4e4e4;
+    line-height: 0.2rem;
+    color: #444e60;
+    font-size: 0.8rem;
+    text-align: center
+}
+.card-body a {
+    color: #444e60;
+}
+</style>
