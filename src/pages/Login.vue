@@ -3,14 +3,16 @@
     <div class="form-wrapper">
         <h4>Welcome to login page</h4>
         <form @submit.prevent="login()">
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="text" id="email" placeholder="Your email..." v-model="email" required autofocus>
             </div>
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="password" id="password" placeholder="Your password..." v-model="password" required>
             </div>
             <p v-if="error" class="alert alert-danger row" role="alert">Incorrect email or password</p>
-            <button name="submit" type="submit" class="btn btn-primary">Submit</button>      
+            <div class="form-fields">
+                <button name="submit" type="submit" class="btn" style="width: 100%;">Login</button>
+            </div>     
         </form>
     </div>
 </div>
@@ -46,8 +48,10 @@ export default {
 <style>
 .form-wrapper {
     width:30%;
-    height:400px;
     margin:50px auto;
+}
+.form-fields {
+    margin: 15px auto;
 }
 </style>
 

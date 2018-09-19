@@ -1,16 +1,16 @@
 <template>
-    <div class="container">
+    <div class="wrapper">
         <div class="card text-center w-100">
-            <div class="card-body">
+            <div class="card-header">
                 <p>created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
-                <h5 class="card-text">{{gallery.gallery_name}}</h5>
+                <h5 class="card-title">{{gallery.gallery_name}}</h5>
                 <p class="card-text">{{gallery.description}}</p>
+            </div>
+            <div class="card-body">
                 <b-carousel id="carousel1"
                     controls
                     indicators
                     background="#ababab"
-                    img-width="600"
-                    img-height="400"
                     :interval="3000"
                 >
                 <b-carousel-slide class="slider-item" v-for="(image, index) in gallery.images" :key="index"
@@ -70,15 +70,15 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .card {
     width: 60%;
     padding: 5px;
     margin: 20px auto;
     box-shadow: 5px 5px 30px;
 }
-.card-body {
-    background-color: #e4e4e4;
+div.card-header {
+    background-color: red;
     line-height: 0.2rem;
     color: #444e60;
     font-size: 0.8rem;

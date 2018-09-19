@@ -23,7 +23,7 @@ export default class GalleryService {
     }
 
     getUserGalleries(id){
-        return axios.get(`my-galleries/${id}`)
+        return axios.get(`my-galleries`)
     }
 
 }

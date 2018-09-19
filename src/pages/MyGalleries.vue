@@ -3,7 +3,7 @@
         <h1>Galleries</h1>
         <div v-if="galleries.length != 0">
             <div class="row">
-                <div class="card-style card col-xs-3" v-for="(gallery, index) in galleries" :key="index">
+                <div class="card" v-for="(gallery, index) in galleries" :key="index">
                     <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
                     <div class="card-body">
                         <router-link :to="{ name: 'single-gallery', params:{id: gallery.id}}">

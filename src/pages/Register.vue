@@ -4,31 +4,33 @@
         <h4>Create a New Account</h4>
         <p>It’s free and always will be.</p>
         <form @submit.prevent="register()">
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="text" id="first_name" placeholder="Your first name..." v-model="newUser.first_name" required autofocus>
                 <p class="alert alert-danger" role="alert" v-if="errors.first_name">{{errors.first_name[0]}}</p>
             </div>
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="text" id="last_name" placeholder="Your last name..." v-model="newUser.last_name" required>
                 <p class="alert alert-danger" role="alert" v-if="errors.last_name">{{errors.last_name[0]}}</p>
             </div>
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="text" id="email" placeholder="Your email..." v-model="newUser.email" required>
                 <p class="alert alert-danger" role="alert" v-if="errors.email">{{errors.email[0]}}</p>
             </div>
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="password" id="password" placeholder="Your password..." v-model="newUser.password" required>
                 <p class="alert alert-danger" role="alert" v-if="errors.password">{{errors.password[0]}}</p>
             </div>
-            <div class="form-group row">
+            <div class="form-fields">
                 <input class="form-control here" type="password" id="password_confirmation" placeholder="Confirm your password..." v-model="newUser.password_confirmation" required>
                 <p class="alert alert-danger" role="alert" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</p>
             </div>
-            <div class="form-group">
-                    <label for="accepted_terms_and_conditions" class="ol-form-label">I accept terms and conditions</label>
-                    <input v-model="newUser.accepted_terms_and_conditions" class="checkbox" id="accepted_terms_and_conditions" type="checkbox" name="accepted_terms_and_conditions" value="1" required>
+            <div class="form-fields">
+                <label for="accepted_terms_and_conditions" class="ol-form-label">I accept terms and conditions</label>
+                <input v-model="newUser.accepted_terms_and_conditions" class="checkbox" id="accepted_terms_and_conditions" type="checkbox" name="accepted_terms_and_conditions" value="1" required>
             </div>
-            <button name="submit" type="submit" class="btn btn-primary">Submit</button>      
+            <div class="form-fields">
+                <button name="submit" type="submit" class="btn" style="width: 100%;">Submit</button>    
+            </div>  
         </form>
     </div>
 </div>
@@ -62,5 +64,8 @@ export default {
     width:30%;
     height:400px;
     margin:50px auto;
+}
+.form-fields {
+    margin: 15px auto;
 }
 </style>
