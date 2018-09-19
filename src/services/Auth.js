@@ -28,7 +28,12 @@ export default class AuthService {
     }
 
     addUser(user) {
-        return axios.post('register', user);
+        return axios.post('register', user).then((response) => {
+        // console.log(response.data.access_token)
+        window.localStorage.setItem('token', response.data.access_token)
+        this.setAuthorizationHeader()
+        })
+
     }
 }
 export const authService = new AuthService()

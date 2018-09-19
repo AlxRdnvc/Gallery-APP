@@ -22,6 +22,10 @@ export default class GalleryService {
         return axios.post('galleries', gallery)
     }
 
+    getUserGalleries(id){
+        return axios.get(`my-galleries/${id}`)
+    }
+
 }
 
 export const galleryService = new GalleryService();
