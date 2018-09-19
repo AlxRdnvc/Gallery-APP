@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="container">
         <div class="card text-center w-100">
             <div class="card-header">
                 <p>created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
@@ -22,7 +22,7 @@
             <h5 class="card-title">Comments</h5>
             <div v-for="(comment, index) in gallery.comments" :key="index">
                 <div>
-                    <!-- <p class="card-text">Author: <i><b>{{comment.user_id.first_name}} {{comment.user_id.last_name}}</b></i></p> -->
+                    <p class="card-text">Author: <i><b>{{comment.user.first_name}} {{comment.user.last_name}}</b></i></p>
                     <p class="card-text">Created at: {{ comment.created_at }} </p>
                     <p class="card-text">{{ comment.content }}</p><br>
                 </div>
@@ -45,7 +45,7 @@
 </template>
 <script>
 import {galleryService} from "../services/GalleryService";
-import {commentService} from '../services/CommentService';
+// import {commentService} from '../services/CommentService';
 
 
 export default {
@@ -61,8 +61,6 @@ export default {
         .then(response => {
             this.gallery = response.data
             this.comments = this.gallery.comments
-            console.log(this.gallery)
-            console.log(this.comments)
         })
         .catch(error => {
                 this.error = error.response.data.error
@@ -77,9 +75,9 @@ export default {
     margin: 20px auto;
     box-shadow: 5px 5px 30px;
 }
-div.card-header {
-    background-color: red;
-    line-height: 0.2rem;
+.card-header{
+    background-color: #e4e4e4;
+    /* line-height: 1rem; */
     color: #444e60;
     font-size: 0.8rem;
     text-align: center
