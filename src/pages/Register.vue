@@ -37,6 +37,7 @@
 </template>
 <script>
 import { authService } from "../services/Auth.js";
+import { EventBus } from "../main";
 
 export default {
     name: 'register',
@@ -51,6 +52,7 @@ export default {
             authService.addUser(this.newUser)
             .then(() => {
             this.$router.push('galleries')
+            EventBus.$emit("changeStatus", "true");
             })
             .catch(error => {
                 this.errors = error.response.data.errors

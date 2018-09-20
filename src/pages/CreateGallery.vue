@@ -6,7 +6,7 @@
     <form @submit.prevent="submit">
         <div class="form-group row">
             <div class="col-8">
-                <input id="gallery_name" name="gallery_name" placeholder="Gallery title..." type="text" class="form-control here" v-model="newGallery.gallery_name">
+                <input id="gallery_name" name="gallery_name" placeholder="Gallery title..." type="text" class="form-control here" v-model="newGallery.gallery_name" required autofocus>
             </div>
         </div>
         <div class="form-group row">
@@ -54,7 +54,7 @@ export default {
         submit() {
             galleryService.addGallery(this.newGallery)
             .then((response) => {
-                this.$router.push('galleries')
+                this.$router.push('my-galleries')
             })
             .catch(error => {
             this.error = error.response.data.error

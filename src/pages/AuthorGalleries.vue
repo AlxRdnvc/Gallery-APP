@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <!-- <h3>Galleries by:</h3> insert user fist_name here-->
+        <h3>Galleries by: {{galleries[0].user.first_name}} {{galleries[0].user.last_name}}</h3>
         <div class="row">
             <div class="card-style card col-xs-3" v-for="(gallery, index) in galleries" :key="index">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
@@ -28,7 +28,6 @@ export default {
         galleryService.getAuthorGalleries(this.$route.params.id)
         .then(response => {
             this.galleries = response.data
-            console.log(this.galleries)
         })
         .catch(error => {
                 this.error = error.response.data.error

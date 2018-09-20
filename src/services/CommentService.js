@@ -5,10 +5,10 @@ export default class Comment {
     axios.defaults.baseURL = 'http://localhost:8000/api/auth/'
   }
 
-  addComment (comment) {
+  addComment(comment) {
     return axios.post('comments', comment)
   }
   
 }
 
-export const comments = new Comment()
+export const commentService = new Comment()

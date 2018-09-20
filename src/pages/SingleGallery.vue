@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card text-center w-100">
             <div class="card-header">
-                <p>created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
+                <p v-if="gallery">created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
                 <h5 class="card-title">{{gallery.gallery_name}}</h5>
                 <p class="card-text">{{gallery.description}}</p>
             </div>
@@ -28,11 +28,11 @@
                 </div>
             </div><br><br>
             <div>
-                <form class="form-horizontal">
+                <form class="form-horizontal" @submit.prevent="addComment">
                     <div class="form-group">
                         <label for="first_name" class="control-label col-xs-4">Type your comment</label> 
                         <div class="col-xs-8">
-                            <input name="content" type="textarea" class="form-control" required="required">
+                            <input name="content" type="textarea" class="form-control" v-model="newComment.content" required="required">
                         </div>
                         <div class="col-xs-offset-4 col-xs-8">
                             <button name="submit" type="submit" class="btn btn-primary">Add Comment</button>
@@ -45,7 +45,7 @@
 </template>
 <script>
 import {galleryService} from "../services/GalleryService";
-// import {commentService} from '../services/CommentService';
+import {commentService} from '../services/CommentService';
 
 
 export default {
@@ -54,6 +54,10 @@ export default {
         return {
             gallery: [],
             comments: [],
+            newComment: {
+                content: '',
+                gallery_id: ''
+            }
         }
     },
     created() {
@@ -65,6 +69,19 @@ export default {
         .catch(error => {
                 this.error = error.response.data.error
         })
+    },
+    methods: {
+        addComment() {
+            this.newComment.gallery_id = this.gallery.id
+            commentService.addComment(this.newComment)
+            .then(response => {
+                this.gallery = response.data
+                this.$router.go()
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
     }
 }
 </script>
