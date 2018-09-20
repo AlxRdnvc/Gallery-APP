@@ -17,6 +17,9 @@
                                       :img-src="image.image_url"/>
                 </b-carousel>
             </div>
+            <div>
+                <button name="galleryDelete" @click="deleteGallery" class="btn btn-danger">Delete</button>
+            </div>
         </div><br>
         <div>
             <h5 class="card-title">Comments</h5>
@@ -89,8 +92,18 @@ export default {
         deleteComment(id, index){
             commentService.delete(id)
             .then(response => {
-                this.index = this.gallery.comments[index]
+                // confirm('Are you sure?') logic has to be done
                 this.gallery.comments.splice(index, 1)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
+        deleteGallery(){
+            galleryService.deleteGallery(this.gallery.id)
+            .then(response => {
+                // confirm('Are you sure?') logic has to be done
+                this.$router.push({name: 'my-galleries'})
             })
             .catch(error => {
                 console.log(error)

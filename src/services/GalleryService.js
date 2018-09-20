@@ -22,6 +22,10 @@ export default class GalleryService {
         return axios.post('galleries', gallery)
     }
 
+    deleteGallery(id) {
+        return axios.delete(`galleries/${id}`)
+    }
+
     getUserGalleries(){
         return axios.get(`my-galleries`)
     }
