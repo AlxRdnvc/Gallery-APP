@@ -51,8 +51,11 @@ export default {
         register() {
             authService.addUser(this.newUser)
             .then(() => {
+            authService.login(this.newUser.email, this.newUser.password)
+            .then(() =>{
             this.$router.push('galleries')
             EventBus.$emit("changeStatus", "true");
+            })
             })
             .catch(error => {
                 this.errors = error.response.data.errors

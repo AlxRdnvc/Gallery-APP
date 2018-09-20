@@ -8,6 +8,10 @@ export default class Comment {
   addComment(comment) {
     return axios.post('comments', comment)
   }
+
+  delete (id) {
+    return axios.delete(`comments/${id}`)
+  }
   
 }
 

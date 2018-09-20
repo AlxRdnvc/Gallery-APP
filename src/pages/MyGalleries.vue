@@ -33,7 +33,6 @@ export default {
         galleryService.getUserGalleries(this.$route.params.id)
         .then(response => {
             this.galleries = response.data
-            console.log(this.galleries)
         })
         .catch(error => {
                 this.error = error.response.data.error

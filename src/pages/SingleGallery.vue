@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card text-center w-100">
             <div class="card-header">
-                <p v-if="gallery">created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
+                <p v-if="gallery.user">created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
                 <h5 class="card-title">{{gallery.gallery_name}}</h5>
                 <p class="card-text">{{gallery.description}}</p>
             </div>
@@ -25,6 +25,7 @@
                     <p class="card-text">Author: <i><b>{{comment.user.first_name}} {{comment.user.last_name}}</b></i></p>
                     <p class="card-text">Created at: {{ comment.created_at }} </p>
                     <p class="card-text">{{ comment.content }}</p><br>
+                    <button name="commentDelete" v-if="userID == gallery.comments[index].user_id" @click="deleteComment(comment.id, index)" class="btn btn-danger" >Delete</button>
                 </div>
             </div><br><br>
             <div>
@@ -46,6 +47,7 @@
 <script>
 import {galleryService} from "../services/GalleryService";
 import {commentService} from '../services/CommentService';
+import {authService} from '../services/Auth';
 
 
 export default {
@@ -54,9 +56,10 @@ export default {
         return {
             gallery: [],
             comments: [],
+            userID: '',
             newComment: {
                 content: '',
-                gallery_id: ''
+                gallery_id: '',
             }
         }
     },
@@ -65,6 +68,7 @@ export default {
         .then(response => {
             this.gallery = response.data
             this.comments = this.gallery.comments
+            this.userID = authService.getUserId()
         })
         .catch(error => {
                 this.error = error.response.data.error
@@ -73,15 +77,26 @@ export default {
     methods: {
         addComment() {
             this.newComment.gallery_id = this.gallery.id
+            let userID = authService.getUserId()
             commentService.addComment(this.newComment)
             .then(response => {
-                this.gallery = response.data
-                this.$router.go()
+                this.gallery.comments.push(response.data)
+            })
+            .catch(error => {
+                this.error = error.response.data.error
+            })
+        }, 
+        deleteComment(id, index){
+            commentService.delete(id)
+            .then(response => {
+                this.index = this.gallery.comments[index]
+                this.gallery.comments.splice(index, 1)
             })
             .catch(error => {
                 console.log(error)
             })
         }
+            
     }
 }
 </script>

@@ -15,12 +15,18 @@ export default class AuthService {
         }).then((response) => {
         // console.log(response.data.access_token)
         window.localStorage.setItem('token', response.data.access_token)
+        window.localStorage.setItem('userId', response.data.userId)
         this.setAuthorizationHeader()
         })
     }
     setAuthorizationHeader() {
         const token = window.localStorage.getItem('token')
+        const user_id = localStorage.getItem('userId')
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+
+    getUserId(){
+        return localStorage.getItem('userId')
     }
 
     isAuthenticated() {
@@ -28,12 +34,7 @@ export default class AuthService {
     }
 
     addUser(user) {
-        return axios.post('register', user).then((response) => {
-        // console.log(response.data.access_token)
-        window.localStorage.setItem('token', response.data.access_token)
-        this.setAuthorizationHeader()
-        })
-
+        return axios.post('register', user)
     }
 }
 export const authService = new AuthService()
