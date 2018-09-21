@@ -6,7 +6,7 @@
         <router-link class="nav-item nav-link" v-if="!isAuthenticated" to="/register"><p>REGISTER</p></router-link>
         <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/my-galleries"><p>MY GALLERIES</p></router-link>
         <router-link class="nav-item nav-link" v-if="isAuthenticated" to="/create"><p>CREATE NEW GALLERY</p></router-link>
-        <button v-if="isAuthenticated" @click="logout"><p>Logout</p></button>
+        <a class="nav-item nav-link" style="cursor:pointer;" v-if="isAuthenticated" @click="logout"><p>LOGOUT</p></a>
     </div>
   </nav>
 </template>

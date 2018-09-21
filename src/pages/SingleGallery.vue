@@ -7,18 +7,18 @@
                 <p class="card-text">{{gallery.description}}</p>
             </div>
             <div class="card-body">
-                <b-carousel id="carousel1"
-                    controls
-                    indicators
-                    background="#ababab"
-                    :interval="3000"
-                >
-                <b-carousel-slide class="slider-item" v-for="(image, index) in gallery.images" :key="index"
-                                      :img-src="image.image_url"/>
+                <b-carousel id="carousel1" controls indicators :interval="3000">
+                    <div class="slider-item" v-for="(image, index) in gallery.images" :key="index">
+                        <a :href="image.image_url"  target="_blank">
+                            <b-carousel-slide>
+                                <img slot="img" target="_blank" class="d-block img-fluid w-100" :src="image.image_url" alt="image slot">
+                            </b-carousel-slide>
+                        </a>
+                    </div>
                 </b-carousel>
             </div>
             <div>
-                <button name="galleryDelete" @click="deleteGallery" class="btn btn-danger">Delete</button>
+                <button name="galleryDelete" v-if="userID == gallery.user_id" @click="deleteGallery" class="btn btn-danger">Delete</button>
             </div>
         </div><br>
         <div>
