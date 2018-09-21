@@ -31,7 +31,7 @@
                     <button name="commentDelete" v-if="userID == gallery.comments[index].user_id" @click="deleteComment(comment.id, index)" class="btn btn-danger" >Delete</button>
                 </div>
             </div><br><br>
-            <div>
+            <div v-if="isAuth">
                 <form class="form-horizontal" @submit.prevent="addComment">
                     <div class="form-group">
                         <label for="first_name" class="control-label col-xs-4">Type your comment</label> 
@@ -65,6 +65,7 @@ export default {
                 content: '',
                 gallery_id: '',
             },
+            isAuth: '',
             errors: []
         }
     },
@@ -74,6 +75,7 @@ export default {
             this.gallery = response.data
             this.comments = this.gallery.comments
             this.userID = authService.getUserId()
+            this.isAuth = authService.isAuthenticated()
         })
         .catch(error => {
                 this.errors = error.response.data.errors

@@ -30,6 +30,10 @@ export default class GalleryService {
         return axios.get(`my-galleries`)
     }
 
+    getNextPage(nextPage){
+        return axios.get(nextPage)
+    }
+
 }
 
 export const galleryService = new GalleryService();
