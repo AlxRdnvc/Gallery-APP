@@ -1,5 +1,8 @@
 <template>
     <div class="container-fluid">
+        <div v-if="errors" class="alert alert-danger row" role="alert">
+          <strong>{{errors}}</strong>
+        </div>
         <div v-if="galleries.length != 0">
             <div v-for="(gallery, index) in galleries" :key="index" class="card">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
@@ -22,7 +25,8 @@ export default {
     name: 'galleries',
     data() {
         return {
-            galleries: []
+            galleries: [],
+            errors: ''
         }
     },
     created() {
@@ -31,7 +35,7 @@ export default {
             this.galleries = response.data
         })
         .catch(error => {
-                this.error = error.response.data.error
+                this.errors = error.response.data.errors
         })
     }
 }

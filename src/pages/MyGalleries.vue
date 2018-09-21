@@ -1,6 +1,9 @@
 <template>
     <div class="container">
         <h1>Galleries</h1>
+        <div v-if="error" class="alert alert-danger row" role="alert">
+          <strong>{{error}}</strong>
+        </div>
         <div v-if="galleries.length != 0">
             <div class="row">
                 <div class="card" v-for="(gallery, index) in galleries" :key="index">
@@ -26,7 +29,8 @@ export default {
     name: 'my-galleries',
     data() {
         return {
-            galleries: []
+            galleries: [],
+            error: ''
         }
     },
     created() {

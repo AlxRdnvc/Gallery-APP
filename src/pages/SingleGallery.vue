@@ -37,6 +37,7 @@
                         <label for="first_name" class="control-label col-xs-4">Type your comment</label> 
                         <div class="col-xs-8">
                             <input name="content" type="textarea" class="form-control" v-model="newComment.content" required="required">
+                            <p class="alert alert-danger" role="alert" v-if="errors.content">{{errors.content[0]}}</p>
                         </div>
                         <div class="col-xs-offset-4 col-xs-8">
                             <button name="submit" type="submit" class="btn btn-primary">Add Comment</button>
@@ -63,7 +64,8 @@ export default {
             newComment: {
                 content: '',
                 gallery_id: '',
-            }
+            },
+            errors: []
         }
     },
     created() {
@@ -74,7 +76,7 @@ export default {
             this.userID = authService.getUserId()
         })
         .catch(error => {
-                this.error = error.response.data.error
+                this.errors = error.response.data.errors
         })
     },
     methods: {
@@ -84,30 +86,27 @@ export default {
             commentService.addComment(this.newComment)
             .then(response => {
                 this.gallery.comments.push(response.data)
+                this.newComment = {}
             })
             .catch(error => {
-                this.error = error.response.data.error
+                this.errors = error.response.data.errors
             })
         }, 
         deleteComment(id, index){
-            commentService.delete(id)
-            .then(response => {
-                // confirm('Are you sure?') logic has to be done
-                this.gallery.comments.splice(index, 1)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            if (confirm("Are you sure?")){
+                commentService.delete(id)
+                .then(response => {
+                    this.gallery.comments.splice(index, 1)
+                })
+            }
         },
         deleteGallery(){
-            galleryService.deleteGallery(this.gallery.id)
-            .then(response => {
-                // confirm('Are you sure?') logic has to be done
-                this.$router.push({name: 'my-galleries'})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            if (confirm("Are you sure?")) {
+                galleryService.deleteGallery(this.gallery.id)
+                .then(response => {
+                    this.$router.push({name: 'my-galleries'})
+                })
+            }
         }
             
     }

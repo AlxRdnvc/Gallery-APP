@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+        <div v-if="errors" class="alert alert-danger row" role="alert">
+          <strong>{{errors}}</strong>
+        </div>
         <h3>Galleries by: {{galleries[0].user.first_name}} {{galleries[0].user.last_name}}</h3>
         <div class="row">
             <div class="card-style card col-xs-3" v-for="(gallery, index) in galleries" :key="index">
@@ -22,6 +25,7 @@ export default {
     data() {
         return {
             galleries: [],
+            errors: ''
         }
     },
     created() {
@@ -30,7 +34,7 @@ export default {
             this.galleries = response.data
         })
         .catch(error => {
-                this.error = error.response.data.error
+                this.errors = error.response.data.error
         })
     }
 }
