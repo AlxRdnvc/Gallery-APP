@@ -73,4 +73,7 @@ export default {
 .form-fields {
     margin: 15px auto;
 }
+.btn {
+    width: 100%;
+}
 </style>

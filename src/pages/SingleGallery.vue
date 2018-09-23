@@ -3,7 +3,7 @@
         <div class="card text-center w-100">
             <div class="card-header">
                 <p v-if="gallery.user">created by: <i><b>{{gallery.user.first_name}} {{gallery.user.last_name}}</b></i></p>
-                <h5 class="card-title">{{gallery.gallery_name}}</h5>
+                <h5 class="gallery-title">{{gallery.gallery_name}}</h5>
                 <p class="card-text">{{gallery.description}}</p>
             </div>
             <div class="card-body">

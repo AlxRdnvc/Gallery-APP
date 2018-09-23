@@ -10,7 +10,7 @@
                     <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
                     <div class="card-body">
                         <router-link :to="{ name: 'single-gallery', params:{id: gallery.id}}">
-                            <h5 class="card-title">{{gallery.gallery_name}}</h5>
+                            <h5 class="gallery-title">{{gallery.gallery_name}}</h5>
                         </router-link>
                         <p class="card-text"><i>created at:</i> {{gallery.created_at}}</p>
                     </div>

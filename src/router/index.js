@@ -15,8 +15,8 @@ Vue.use(VueRouter)
 
 const routes = [
   {path: '/', redirect: '/galleries', name:'home'},
-  {path: '/login', component: Login, name: 'login'},
-  {path: '/register', component: Register, name: 'register'},
+  {path: '/login', component: Login, name: 'login', meta: { Guest: true }},
+  {path: '/register', component: Register, name: 'register', meta: { Guest: true }},
   {path: '/galleries', component: Galleries, name: 'galleries'},
   {path: '/galleries/:id', component: SingleGallery, name: 'single-gallery'},
   {path: '/authors/:id', component: AuthorGalleries, name: 'author-galleries'},
@@ -35,6 +35,13 @@ router.beforeEach((to, from, next) => {
       return next();
     } else {
       return next({ name: "login" });
+    }
+  }
+  if (to.meta.Guest) {
+    if (authService.isAuthenticated()) {
+      return next(false);
+    } else {
+      return next();
     }
   }
   next();

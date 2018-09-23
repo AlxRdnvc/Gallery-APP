@@ -7,7 +7,7 @@
             <div v-for="(gallery, index) in loadedGalleries" :key="index" class="card">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
                 <div class="card-body">
-                    <h4><router-link :to="{name: 'single-gallery', params: {id: gallery.id}}">{{gallery.gallery_name}}</router-link></h4>
+                    <h4 class="gallery-title"><router-link :to="{name: 'single-gallery', params: {id: gallery.id}}">{{gallery.gallery_name}}</router-link></h4>
                     <p><router-link  :to="{name: 'author-galleries', params: {id: gallery.user.id}}">{{ gallery.user.first_name}} {{ gallery.user.last_name}}</router-link></p>
                     <p>{{ gallery.created_at}}</p>
                 </div>
@@ -73,6 +73,10 @@ export default {
 }
 .card-body a {
     color: #444e60;
+}
+.gallery-title {
+    font-size: 23px;
+    font-weight: 700;
 }
 </style>
 

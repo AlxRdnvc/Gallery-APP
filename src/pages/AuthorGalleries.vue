@@ -1,16 +1,14 @@
 <template>
     <div class="container">
-        <div v-if="errors" class="alert alert-danger row" role="alert">
-          <strong>{{errors}}</strong>
-        </div>
-        <h3>Galleries by: {{galleries[0].user.first_name}} {{galleries[0].user.last_name}}</h3>
-        <div class="row">
+        <h5 v-if="galleries.user">GALLERIES BY: {{galleries[0].user.first_name}} {{galleries[0].user.last_name}}</h5>
+            <div class="row">
             <div class="card-style card col-xs-3" v-for="(gallery, index) in galleries" :key="index">
                 <img class="card-img-top" :src="gallery.images[0].image_url" alt="Card image cap">
                 <div class="card-body">
                     <router-link :to="{ name: 'single-gallery', params:{id: gallery.id}}">
-                        <h5 class="card-title">{{gallery.gallery_name}}</h5>
+                        <h5 class="gallery-title">{{gallery.gallery_name}}</h5>
                     </router-link>
+                    <p lass="card-text">{{ gallery.user.first_name}} {{ gallery.user.last_name}}</p>
                     <p class="card-text"><i>created at:</i> {{gallery.created_at}}</p>
                 </div>
             </div>
@@ -55,6 +53,10 @@ export default {
 }
 .card-body a {
     color: #444e60;
+}
+.gallery-title {
+    font-size: 20px;
+    font-weight: 700;
 }
 </style>
 
